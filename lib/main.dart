@@ -15,6 +15,8 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MultiProvider(
+      // ultilizamos o Multiprovider para criarmos um array de estados observaveis.
+      // cada ChangeNotifier escuta de forma tipada e fornece para aplicação um estado definido.
       providers: [
         ChangeNotifierProvider<DarKModeService>(
           create: (_) => DarKModeService(),
@@ -24,6 +26,7 @@ class MyApp extends StatelessWidget {
         ),
       ],
       child: Consumer<DarKModeService>(builder: (_, darkModeService, widget) {
+        //usamos o Consumer tipado indicando qual provider queremos observar as alterações.
         return MaterialApp(
           title: 'Flutter Demo',
           debugShowCheckedModeBanner: false,

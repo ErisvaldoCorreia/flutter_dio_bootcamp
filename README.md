@@ -2,6 +2,10 @@
 
 A new Flutter project.
 
+## Observação  
+
+Esse projeto contém trechos comentados como forma de anotação para lembrete de estudos.
+
 ## Getting Started
 
 This project is a starting point for a Flutter application.
