@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_dio_bootcamp/src/home.page.dart';
+import 'package:provider/provider.dart';
+
+import 'src/services/dark_mode.service.dart';
+import 'src/services/contador.service.dart';
+import 'src/home.page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -10,10 +14,24 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      title: 'Flutter Demo',
-      debugShowCheckedModeBanner: false,
-      home: HomePage(),
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider<DarKModeService>(
+          create: (_) => DarKModeService(),
+        ),
+        ChangeNotifierProvider<ContadorService>(
+          create: (_) => ContadorService(),
+        ),
+      ],
+      child: Consumer<DarKModeService>(builder: (_, darkModeService, widget) {
+        return MaterialApp(
+          title: 'Flutter Demo',
+          debugShowCheckedModeBanner: false,
+          theme:
+              darkModeService.darkMode ? ThemeData.dark() : ThemeData.light(),
+          home: const HomePage(),
+        );
+      }),
     );
   }
 }
